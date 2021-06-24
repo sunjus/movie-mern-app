@@ -1,7 +1,6 @@
 {
-  "name": "boilerplate-mern-stack-master",
+  "name": "movie-mern-app",
   "version": "1.0.0",
-  "description": "Hello, My Friends   Thank you for having interest in this repository !",
   "main": "index.js",
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -25,9 +24,9 @@
   "author": "sunjus",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sunjus/boilerplate_marn_stack_master/issues"
+    "url": "https://github.com/sunjus/movie-mern-app/issues"
   },
-  "homepage": "https://github.com/sunjus/boilerplate_marn_stack_master#readme",
+  "homepage": "https://github.com/sunjus/movie-mern-app#readme",
   "devDependencies": {
     "nodemon": "^2.0.7"
   }
