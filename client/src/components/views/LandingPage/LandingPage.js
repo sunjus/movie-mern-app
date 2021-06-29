@@ -7,7 +7,8 @@ import { GridCards } from "../Commons/GridCards";
 
 const LandingPage = (props) => {
   const [moviesPopular, setMoviesPopular] = useState([]);
-  const [movieHeader, setMovieHeader] = useState(0);
+  const [movieHeader, setMovieHeader] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
     const endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US$page=1`;
@@ -18,14 +19,22 @@ const LandingPage = (props) => {
     fetch(endPoint)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.results);
+        console.log(res);
         setMoviesPopular(res.results);
         setMovieHeader(res.results[0]);
+        setCurrentPage(res.page);
       });
   };
 
+  const loadMoreItems = () => {
+    const endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US$page=${
+      currentPage + 1
+    }`;
+    fetchMovies(endPoint);
+  };
+
   return (
-    <div>
+    <div style={{ width: "100%", margin: "0 auto" }}>
       {/*Header Image*/}
       {movieHeader && (
         <ImageHeader
@@ -55,6 +64,12 @@ const LandingPage = (props) => {
               </React.Fragment>
             ))}
         </Row>
+      </div>
+      {/*Load More button*/}
+      <div
+        style={{ display: "flex", justifyContent: "center", margin: "2rem" }}
+      >
+        <button onClick={loadMoreItems}>Load More</button>
       </div>
     </div>
   );
