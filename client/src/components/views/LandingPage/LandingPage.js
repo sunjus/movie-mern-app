@@ -6,12 +6,12 @@ import { ImageHeader } from "./Sections/ImageHeader";
 import { GridCards } from "../Commons/GridCards";
 
 const LandingPage = (props) => {
-  const [moviesPopular, setMoviesPopular] = useState([]);
-  const [movieHeader, setMovieHeader] = useState(null);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [MoviesPopular, setMoviesPopular] = useState([]);
+  const [MovieHeader, setMovieHeader] = useState(null);
+  const [CurrentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    const endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US$page=1`;
+    const endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
     fetchMovies(endPoint);
   }, []);
 
@@ -19,28 +19,34 @@ const LandingPage = (props) => {
     fetch(endPoint)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
-        setMoviesPopular(res.results);
-        setMovieHeader(res.results[0]);
+        //console.log(res);
+        //console.log("Movies", ...MoviesPopular);
+        //console.log("result", ...res.results);
+        setMoviesPopular([...MoviesPopular, ...res.results]);
+        setMovieHeader(MovieHeader || res.results[0]);
         setCurrentPage(res.page);
-      });
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   const loadMoreItems = () => {
-    const endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US$page=${
-      currentPage + 1
+    let endPoint = "";
+
+    //console.log("CurrentPage", CurrentPage);
+    endPoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${
+      CurrentPage + 1
     }`;
     fetchMovies(endPoint);
   };
 
   return (
-    <div style={{ width: "100%", margin: "0 auto" }}>
+    <div style={{ width: "100%", margin: "0", height: "100vh" }}>
       {/*Header Image*/}
-      {movieHeader && (
+      {MovieHeader && (
         <ImageHeader
-          image={`${IMAGE_BASE_URL}w1280${movieHeader.backdrop_path}`}
-          title={movieHeader.original_title}
-          text={movieHeader.overview}
+          image={`${IMAGE_BASE_URL}w1280${MovieHeader.backdrop_path}`}
+          title={MovieHeader.original_title}
+          text={MovieHeader.overview}
         />
       )}
       {/*Movie Grid Cards*/}
@@ -48,8 +54,8 @@ const LandingPage = (props) => {
         <h2>Movies by Popular</h2>
         <hr />
         <Row gutter={[16, 16]}>
-          {moviesPopular &&
-            moviesPopular.map((movie, index) => (
+          {MoviesPopular &&
+            MoviesPopular.map((movie, index) => (
               <React.Fragment key={index}>
                 <GridCards
                   landingPage
