@@ -66,7 +66,8 @@ const MovieDetail = (props) => {
                           ? `${IMAGE_BASE_URL}w500${cast.profile_path}`
                           : null
                       }
-                      cahracterName={cast.name}
+                      name={cast.name}
+                      title={cast.name}
                     />
                   </React.Fragment>
                 ))}
