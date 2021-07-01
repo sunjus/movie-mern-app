@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../../Config";
 import { ImageHeader } from "../LandingPage/Sections/ImageHeader";
 import { MovieInfo } from "./Sections/MovieInfo";
+import { GridCards } from "../Commons/GridCards";
+import { Row } from "antd";
 
 const MovieDetail = (props) => {
   let movieId = props.match.params.movieId;
@@ -12,6 +14,7 @@ const MovieDetail = (props) => {
     console.log(props.match);
     let endPointCrew = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
     let endPointInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}`;
+
     fetch(endPointInfo)
       .then((res) => res.json())
       .then((res) => {
@@ -38,6 +41,24 @@ const MovieDetail = (props) => {
       {/*Movie Info*/}
       <div style={{ width: "80%", margin: "1rem auto" }}>
         <MovieInfo movie={Movie} />
+      </div>
+      {/*Crew*/}
+      <div style={{ width: "80%", margin: "1rem auto" }}>
+        <Row gutter={[16, 16]}>
+          {Crews &&
+            Crews.map((cast, index) => (
+              <React.Fragment key={index}>
+                <GridCards
+                  image={
+                    cast.profile_path
+                      ? `${IMAGE_BASE_URL}w500${cast.profile_path}`
+                      : null
+                  }
+                  cahracterName={cast.name}
+                />
+              </React.Fragment>
+            ))}
+        </Row>
       </div>
     </div>
   );
