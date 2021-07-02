@@ -51,7 +51,7 @@ const LandingPage = (props) => {
         />
       )}
       {/*Movie Grid Cards*/}
-      <div style={{ width: "85%", margin: "1rem auto" }}>
+      <div style={{ width: "80%", margin: "1rem auto" }}>
         <h2>Movies by Popular</h2>
         <hr />
         <Row gutter={[16, 16]}>

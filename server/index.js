@@ -15,6 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.use("./api/favorite", require("./routes/favorite"));
+
 const mongoose = require("mongoose");
 mongoose
   .connect(config.mongoURI, {

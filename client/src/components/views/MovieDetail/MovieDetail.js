@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../../Config";
 import { ImageHeader } from "../LandingPage/Sections/ImageHeader";
+import { Favorite } from "./Sections/Favorite";
 import { MovieInfo } from "./Sections/MovieInfo";
 import { GridCards } from "../Commons/GridCards";
 import { Row, Button } from "antd";
@@ -43,8 +44,16 @@ const MovieDetail = (props) => {
         title={Movie.original_title}
         text={Movie.overview}
       />
-      {/*Movie Info*/}
+
       <div style={{ width: "80%", margin: "1rem auto" }}>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Favorite
+            movieInfo={Movie}
+            movieId={movieId}
+            userFrom={localStorage.getItem("userId")}
+          />
+        </div>
+        {/*Movie Info*/}
         <MovieInfo movie={Movie} />
         <br />
 
@@ -67,7 +76,6 @@ const MovieDetail = (props) => {
                           : null
                       }
                       name={cast.name}
-                      title={cast.name}
                     />
                   </React.Fragment>
                 ))}
