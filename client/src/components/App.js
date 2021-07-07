@@ -1,14 +1,15 @@
-import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import LandingPage from "./components/views/LandingPage/LandingPage";
-import LoginPage from "./components/views/LoginPage/LoginPage";
-import RegisterPage from "./components/views/RegisterPage/RegisterPage";
-import Auth from "./hoc/auth";
-import MovieDetail from "./components/views/MovieDetail/MovieDetail";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NavBar from "./views/NavBar/NavBar";
+import LandingPage from "./views/LandingPage/LandingPage";
+import LoginPage from "./views/LoginPage/LoginPage";
+import RegisterPage from "./views/RegisterPage/RegisterPage";
+import Auth from "../hoc/auth";
+import MovieDetail from "./views/MovieDetail/MovieDetail";
 
 function App() {
   return (
     <Router>
+      <NavBar />
       {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
       <Switch>

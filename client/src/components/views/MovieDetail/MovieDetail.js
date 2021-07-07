@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../../Config";
+import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../Config";
 import { ImageHeader } from "../LandingPage/Sections/ImageHeader";
 import { Favorite } from "./Sections/Favorite";
 import { MovieInfo } from "./Sections/MovieInfo";
 import { GridCards } from "../Commons/GridCards";
 import { Row, Button } from "antd";
 
-const MovieDetail = (props) => {
+function MovieDetail(props) {
   let movieId = props.match.params.movieId;
   const [Movie, setMovie] = useState([]);
   const [Crews, setCrews] = useState([]);
@@ -37,13 +37,15 @@ const MovieDetail = (props) => {
   };
 
   return (
-    <div style={{ width: "100%", margin: "0 auto" }}>
+    <div style={{ width: "100%", margin: "0" }}>
       {/*Header*/}
-      <ImageHeader
-        image={`${IMAGE_BASE_URL}w1280${Movie.backdrop_path}`}
-        title={Movie.original_title}
-        text={Movie.overview}
-      />
+      {Movie && (
+        <ImageHeader
+          image={`${IMAGE_BASE_URL}w1280${Movie.backdrop_path}`}
+          title={Movie.original_title}
+          text={Movie.overview}
+        />
+      )}
 
       <div style={{ width: "80%", margin: "1rem auto" }}>
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -85,6 +87,6 @@ const MovieDetail = (props) => {
       </div>
     </div>
   );
-};
+}
 
 export default MovieDetail;

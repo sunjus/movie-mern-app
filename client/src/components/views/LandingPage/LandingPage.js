@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../../Config";
-import { withRouter } from "react-router-dom";
+import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../Config";
 import { Row } from "antd";
 import { ImageHeader } from "./Sections/ImageHeader";
 import { GridCards } from "../Commons/GridCards";
 
-const LandingPage = (props) => {
+function LandingPage() {
   const [MoviesPopular, setMoviesPopular] = useState([]);
   const [MovieHeader, setMovieHeader] = useState(null);
   const [Loading, setLoading] = useState(true);
@@ -83,6 +82,6 @@ const LandingPage = (props) => {
       </div>
     </div>
   );
-};
+}
 
-export default withRouter(LandingPage);
+export default LandingPage;
