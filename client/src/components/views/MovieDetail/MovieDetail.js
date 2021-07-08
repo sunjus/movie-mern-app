@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../Config";
 import { ImageHeader } from "../LandingPage/Sections/ImageHeader";
-import { Favorite } from "./Sections/Favorite";
 import { MovieInfo } from "./Sections/MovieInfo";
 import { GridCards } from "../Commons/GridCards";
 import { Row, Button } from "antd";
@@ -48,20 +47,15 @@ function MovieDetail(props) {
       )}
 
       <div style={{ width: "80%", margin: "1rem auto" }}>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Favorite
-            movieInfo={Movie}
-            movieId={movieId}
-            userFrom={localStorage.getItem("userId")}
-          />
-        </div>
         {/*Movie Info*/}
         <MovieInfo movie={Movie} />
         <br />
 
         {/*Button Toggle Actor View*/}
         <div>
-          <Button onClick={handleToggle}>View Actors</Button>
+          <Button onClick={handleToggle}>
+            {ToggleActorView === false ? "View Actors" : " Hide Actors"}
+          </Button>
         </div>
 
         {/*Crew*/}
