@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu } from "antd";
-import Logo from "../../../../assets/images/Logo1.png";
+//import Logo from "../../../../assets/images/Logo1.png";
 
 function LeftMenu(props) {
   return (
@@ -13,9 +13,6 @@ function LeftMenu(props) {
       </Menu.Item>*/}
       <Menu.Item key="mail">
         <a href="/">Home</a>
-      </Menu.Item>
-      <Menu.Item key="favorite">
-        <a href="/favorite">Favorite</a>
       </Menu.Item>
     </Menu>
   );
