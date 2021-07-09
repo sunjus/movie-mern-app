@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../Config";
 import { ImageHeader } from "../LandingPage/Sections/ImageHeader";
+import { Favorite } from "./Sections/Favorite";
 import { MovieInfo } from "./Sections/MovieInfo";
 import { GridCards } from "../Commons/GridCards";
 import { Row, Button } from "antd";
@@ -36,7 +37,7 @@ function MovieDetail(props) {
   };
 
   return (
-    <div style={{ width: "100%", margin: "0" }}>
+    <div style={{ width: "100%", margin: "0", height: " 100vh" }}>
       {/*Header*/}
       {Movie && (
         <ImageHeader
@@ -47,12 +48,21 @@ function MovieDetail(props) {
       )}
 
       <div style={{ width: "80%", margin: "1rem auto" }}>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <Favorite
+            movieInfo={Movie}
+            movieId={movieId}
+            userForm={localStorage.getItem("user_id")}
+          />
+        </div>
         {/*Movie Info*/}
         <MovieInfo movie={Movie} />
         <br />
 
         {/*Button Toggle Actor View*/}
-        <div>
+        <div
+          style={{ display: "flex", justifyContent: "center", margin: "2rem" }}
+        >
           <Button onClick={handleToggle}>
             {ToggleActorView === false ? "View Actors" : " Hide Actors"}
           </Button>
