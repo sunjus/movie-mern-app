@@ -3,7 +3,6 @@ import { API_URL, API_KEY, IMAGE_BASE_URL } from "../../Config";
 import { Row } from "antd";
 import { ImageHeader } from "./Sections/ImageHeader";
 import { GridCards } from "../Commons/GridCards";
-import { withRouter } from "react-router-dom";
 
 function LandingPage() {
   const [MoviesPopular, setMoviesPopular] = useState([]);
@@ -85,4 +84,4 @@ function LandingPage() {
   );
 }
 
-export default withRouter(LandingPage);
+export default LandingPage;
